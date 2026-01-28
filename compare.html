@@ -54,49 +54,91 @@
     </label>
 </section>
 
-    <table>
-        <tr>
-            <th>Bank</th>
-            <th>Monthly Checking Fee</th>
-            <th>ATM Access</th>
-            <th>Local Branches</th>
-        </tr>
-        <tr>
-            <td>Bank of Hawaii</td>
-            <td>$0–$12</td>
-            <td>Extensive statewide</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>First Hawaiian Bank</td>
-            <td>$0–$15</td>
-            <td>Largest network</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>Central Pacific Bank</td>
-            <td>$0–$10</td>
-            <td>Moderate</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>HawaiiUSA FCU</td>
-            <td>$0</td>
-            <td>Shared CO-OP ATMs</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>Hawaii State FCU</td>
-            <td>$0</td>
-            <td>Shared network</td>
-            <td>Yes</td>
-        </tr>
-    </table>
+<table id="bankTable">
+    <tr>
+        <th>Bank</th>
+        <th>Monthly Checking Fee</th>
+        <th>ATM Access</th>
+        <th>Local Branches</th>
+    </tr>
+
+    <tr data-type="bank" data-free="no" data-atm="large">
+        <td>Bank of Hawaii</td>
+        <td>$0–$12</td>
+        <td>Extensive statewide</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr data-type="bank" data-free="no" data-atm="large">
+        <td>First Hawaiian Bank</td>
+        <td>$0–$15</td>
+        <td>Largest network</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr data-type="bank" data-free="yes" data-atm="large">
+        <td>Central Pacific Bank</td>
+        <td>$0–$10</td>
+        <td>Moderate</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr data-type="credit-union" data-free="yes" data-atm="shared">
+        <td>HawaiiUSA FCU</td>
+        <td>$0</td>
+        <td>CO-OP Shared ATMs</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr data-type="credit-union" data-free="yes" data-atm="shared">
+        <td>Hawaii State FCU</td>
+        <td>$0</td>
+        <td>Shared Network</td>
+        <td>Yes</td>
+    </tr>
+</table>
+
 </main>
 
 <footer>
     Rates and fees subject to change. Always confirm with the institution.
 </footer>
+
+<script>
+const filterFree = document.getElementById("filter-free");
+const filterType = document.getElementById("filter-type");
+const filterATM = document.getElementById("filter-atm");
+const rows = document.querySelectorAll("#bankTable tr[data-type]");
+
+function applyFilters() {
+    rows.forEach(row => {
+        const isFree = row.dataset.free;
+        const type = row.dataset.type;
+        const atm = row.dataset.atm;
+
+        let show = true;
+
+        if (filterFree.checked && isFree !== "yes") {
+            show = false;
+        }
+
+        if (filterType.value !== "all" && type !== filterType.value) {
+            show = false;
+        }
+
+        if (filterATM.value !== "all" && atm !== filterATM.value) {
+            show = false;
+        }
+
+        row.style.display = show ? "" : "none";
+    });
+}
+
+filterFree.addEventListener("change", applyFilters);
+filterType.addEventListener("change", applyFilters);
+filterATM.addEventListener("change", applyFilters);
+</script>
+
 
 </body>
 </html>

@@ -24,6 +24,36 @@
 </nav>
 
 <main class="container">
+
+<section class="card" style="margin-bottom:2rem;">
+    <h3>Filter Banks</h3>
+
+    <label>
+        <input type="checkbox" id="filter-free">
+        Free Checking Only
+    </label>
+    <br>
+
+    <label>
+        Bank Type:
+        <select id="filter-type">
+            <option value="all">All</option>
+            <option value="bank">Bank</option>
+            <option value="credit-union">Credit Union</option>
+        </select>
+    </label>
+    <br><br>
+
+    <label>
+        ATM Network:
+        <select id="filter-atm">
+            <option value="all">All</option>
+            <option value="large">Large Network</option>
+            <option value="shared">Shared Network</option>
+        </select>
+    </label>
+</section>
+
     <table>
         <tr>
             <th>Bank</th>

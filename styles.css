@@ -57,9 +57,9 @@ a:hover { text-decoration: underline; }
 }
 
 .hero-image img {
-    max-width: 600px;
-    width: 100%;
-    height: auto;
+    max-width: 650px;
+    width: 110%;
+    margin-right: -40px;
 }
 
 

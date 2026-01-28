@@ -111,3 +111,43 @@ select {
     padding: .4rem;
     margin-left: .4rem;
 }
+
+/* Mobile accordion styles */
+.mobile-only {
+    display: none;
+}
+
+.accordion-item {
+    background: white;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+}
+
+.accordion-header {
+    width: 100%;
+    background: var(--ocean);
+    color: white;
+    padding: 1rem;
+    border: none;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+}
+
+.accordion-content {
+    padding: 1rem;
+    display: none;
+}
+
+/* Responsive switch */
+@media (max-width: 768px) {
+    table {
+        display: none;
+    }
+    .mobile-only {
+        display: block;
+    }
+}

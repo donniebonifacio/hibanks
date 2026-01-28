@@ -98,6 +98,55 @@
     </tr>
 </table>
 
+<section id="mobileAccordion" class="mobile-only">
+
+    <div class="accordion-item" data-type="bank" data-free="no" data-atm="large">
+        <button class="accordion-header">Bank of Hawaii</button>
+        <div class="accordion-content">
+            <p><strong>Monthly Fee:</strong> $0–$12</p>
+            <p><strong>ATM Access:</strong> Extensive statewide</p>
+            <p><strong>Local Branches:</strong> Yes</p>
+        </div>
+    </div>
+
+    <div class="accordion-item" data-type="bank" data-free="no" data-atm="large">
+        <button class="accordion-header">First Hawaiian Bank</button>
+        <div class="accordion-content">
+            <p><strong>Monthly Fee:</strong> $0–$15</p>
+            <p><strong>ATM Access:</strong> Largest network</p>
+            <p><strong>Local Branches:</strong> Yes</p>
+        </div>
+    </div>
+
+    <div class="accordion-item" data-type="bank" data-free="yes" data-atm="large">
+        <button class="accordion-header">Central Pacific Bank</button>
+        <div class="accordion-content">
+            <p><strong>Monthly Fee:</strong> $0–$10</p>
+            <p><strong>ATM Access:</strong> Moderate</p>
+            <p><strong>Local Branches:</strong> Yes</p>
+        </div>
+    </div>
+
+    <div class="accordion-item" data-type="credit-union" data-free="yes" data-atm="shared">
+        <button class="accordion-header">HawaiiUSA FCU</button>
+        <div class="accordion-content">
+            <p><strong>Monthly Fee:</strong> $0</p>
+            <p><strong>ATM Access:</strong> CO-OP Shared ATMs</p>
+            <p><strong>Local Branches:</strong> Yes</p>
+        </div>
+    </div>
+
+    <div class="accordion-item" data-type="credit-union" data-free="yes" data-atm="shared">
+        <button class="accordion-header">Hawaii State FCU</button>
+        <div class="accordion-content">
+            <p><strong>Monthly Fee:</strong> $0</p>
+            <p><strong>ATM Access:</strong> Shared Network</p>
+            <p><strong>Local Branches:</strong> Yes</p>
+        </div>
+    </div>
+
+</section>
+
 </main>
 
 <footer>
@@ -109,34 +158,49 @@ const filterFree = document.getElementById("filter-free");
 const filterType = document.getElementById("filter-type");
 const filterATM = document.getElementById("filter-atm");
 const rows = document.querySelectorAll("#bankTable tr[data-type]");
+const accordionItems = document.querySelectorAll(".accordion-item");
 
 function applyFilters() {
     rows.forEach(row => {
-        const isFree = row.dataset.free;
-        const type = row.dataset.type;
-        const atm = row.dataset.atm;
-
         let show = true;
 
-        if (filterFree.checked && isFree !== "yes") {
-            show = false;
-        }
-
-        if (filterType.value !== "all" && type !== filterType.value) {
-            show = false;
-        }
-
-        if (filterATM.value !== "all" && atm !== filterATM.value) {
-            show = false;
-        }
+        if (filterFree.checked && row.dataset.free !== "yes") show = false;
+        if (filterType.value !== "all" && row.dataset.type !== filterType.value) show = false;
+        if (filterATM.value !== "all" && row.dataset.atm !== filterATM.value) show = false;
 
         row.style.display = show ? "" : "none";
     });
+
+    accordionItems.forEach(item => {
+        let show = true;
+
+        if (filterFree.checked && item.dataset.free !== "yes") show = false;
+        if (filterType.value !== "all" && item.dataset.type !== filterType.value) show = false;
+        if (filterATM.value !== "all" && item.dataset.atm !== filterATM.value) show = false;
+
+        item.style.display = show ? "" : "none";
+    });
 }
+
 
 filterFree.addEventListener("change", applyFilters);
 filterType.addEventListener("change", applyFilters);
 filterATM.addEventListener("change", applyFilters);
+</script>
+
+<script>
+document.querySelectorAll(".accordion-header").forEach(button => {
+    button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        const isOpen = content.style.display === "block";
+
+        document.querySelectorAll(".accordion-content").forEach(c => {
+            c.style.display = "none";
+        });
+
+        content.style.display = isOpen ? "none" : "block";
+    });
+});
 </script>
 
 

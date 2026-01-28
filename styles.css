@@ -24,12 +24,43 @@ a {
 }
 a:hover { text-decoration: underline; }
 
-header {
-    background: linear-gradient(135deg, var(--deep), var(--ocean));
-    color: white;
-    padding: 2.5rem 1rem;
-    text-align: center;
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #94d2bd, #e9d8a6);
+    padding: 3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
+
+.hero-content {
+    max-width: 520px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--deep);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-btn {
+    font-size: 1.1rem;
+    padding: .9rem 1.4rem;
+    border-radius: 999px;
+}
+
+.hero-image img {
+    max-width: 420px;
+    width: 100%;
+}
+
 
 nav {
     background: white;
@@ -62,10 +93,17 @@ nav a {
 
 .card {
     background: white;
-    padding: 1.5rem;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    padding: 1.8rem;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    transition: transform .2s ease, box-shadow .2s ease;
 }
+
+.card:hover {
+    transform: translateY(-6px) rotate(-0.5deg);
+    box-shadow: 0 18px 35px rgba(0,0,0,.12);
+}
+
 
 .btn {
     display: inline-block;
